@@ -13,13 +13,7 @@ from utilities.BaseClass import BaseClass
 
 class TestOne(BaseClass):
 
-    def test_e2e(self):
-        log = self.getLogger()
-        homePage = HomePage(self.driver)
-        checkoutpage = homePage.shopItems()
-        log.info("getting all the card titles")
-        cards = checkoutpage.getCardTitles()
-        i = -1
+
         for card in cards:
             i = i + 1
             cardText = card.text
