@@ -1,0 +1,10 @@
+datasources:ff33850dae5a6eb0306ce80f3166370ae593dfb6
+commandlineoptions:9f8598a690c7367accf83ead504756ddd374acc9
+suitesfrom:no-suites-from-option
+file:5b7f94f2e6ec517f0e4654c9efed8970892032fe
+--suite Suites.ArticleSummarizationTest
+--suite Suites.AutoMLTest
+--suite Suites.LoginPageTest
+--suite Suites.MachineTranslationTest
+--suite Suites.News
+--suite Suites.PatentRelevancyCheckTest

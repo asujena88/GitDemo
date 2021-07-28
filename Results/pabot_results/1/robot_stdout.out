@@ -1,0 +1,16 @@
+==============================================================================
+Suites                                                                        
+==============================================================================
+Suites.AutoMLTest                                                             
+==============================================================================
+AutoMLTest                                                            | FAIL |
+StaleElementReferenceException: Message: stale element reference: element is not attached to the page document
+  (Session info: chrome=91.0.4472.124)
+------------------------------------------------------------------------------
+Suites.AutoMLTest                                                     | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Suites                                                                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\Results\pabot_results\1\output.xml

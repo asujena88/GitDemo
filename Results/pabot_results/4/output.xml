@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.9.0 on win32)" generated="20210714 16:39:22.434" rpa="false" schemaversion="2">
+<suite id="s1" name="Suites">
+<suite id="s1-s1" name="News" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\News.robot">
+<test id="s1-s1-t1" name="NewsClassificationTest">
+<kw name="Open My Browser" library="NewsKeywords">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.285" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.285" endtime="20210714 16:39:57.771"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:39:57.804" endtime="20210714 16:39:58.990"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.283" endtime="20210714 16:39:58.998"/>
+</kw>
+<kw name="Enter User Name" library="NewsKeywords">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:39:59.022" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:39:59.013" endtime="20210714 16:40:02.175"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:59.000" endtime="20210714 16:40:02.175"/>
+</kw>
+<kw name="Enter Password" library="NewsKeywords">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.180" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.178" endtime="20210714 16:40:03.188"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.176" endtime="20210714 16:40:03.189"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:05.245" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:03.190" endtime="20210714 16:40:05.292"/>
+</kw>
+<kw name="Submit" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:05.772" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:05.683" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:05.332" endtime="20210714 16:40:08.081"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:10.084" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.082" endtime="20210714 16:40:10.093"/>
+</kw>
+<kw name="Tools" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:10.105" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:10.104" endtime="20210714 16:40:11.228"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:10.094" endtime="20210714 16:40:11.232"/>
+</kw>
+<kw name="News" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'News Classification')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:11.237" level="INFO">Clicking element 'xpath://h3[contains(text(),'News Classification')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:11.236" endtime="20210714 16:40:11.880"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:11.233" endtime="20210714 16:40:11.881"/>
+</kw>
+<kw name="Language" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'Select Language')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:11.889" level="INFO">Clicking element 'xpath://span[contains(text(),'Select Language')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:11.884" endtime="20210714 16:40:12.131"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:11.882" endtime="20210714 16:40:12.132"/>
+</kw>
+<kw name="Select Language" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://p-dropdownitem[3]/li/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.135" level="INFO">Clicking element 'xpath://p-dropdownitem[3]/li/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.134" endtime="20210714 16:40:12.487"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.133" endtime="20210714 16:40:12.492"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:17.504" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:12.493" endtime="20210714 16:40:17.505"/>
+</kw>
+<kw name="FileUploadButton" library="NewsKeywords">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:17.512" endtime="20210714 16:40:17.708"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:17.712" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:17.710" endtime="20210714 16:40:17.981"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:17.506" endtime="20210714 16:40:17.981"/>
+</kw>
+<kw name="SelectFile" library="NewsKeywords">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:17.983" endtime="20210714 16:40:18.075"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<arg>C:/Users/asutosh.jena/Documents/AI Playground/upload data/new/test_api_chinese.xlsx</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20210714 16:40:18.151" level="INFO">Sending C:\Users\asutosh.jena\Documents\AI Playground\upload data\new\test_api_chinese.xlsx to browser.</msg>
+<status status="PASS" starttime="20210714 16:40:18.087" endtime="20210714 16:40:18.379"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:17.982" endtime="20210714 16:40:18.379"/>
+</kw>
+<kw name="Start" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html[1]/body[1]/app-root[1]/app-home[1]/app-news-classification[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[3]/button[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:18.391" level="INFO">Clicking element 'xpath:/html[1]/body[1]/app-root[1]/app-home[1]/app-news-classification[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[3]/button[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:18.385" endtime="20210714 16:40:18.698"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:18.380" endtime="20210714 16:40:18.698"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:20.703" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:18.699" endtime="20210714 16:40:20.703"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>News.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.616" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="News.png"&gt;&lt;img src="News.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:20.705" endtime="20210714 16:41:10.780"/>
+</kw>
+<kw name="Close My Browser" library="NewsKeywords">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:10.878" endtime="20210714 16:41:16.778"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:10.848" endtime="20210714 16:41:16.780"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.281" endtime="20210714 16:41:16.784"/>
+</test>
+<status status="PASS" starttime="20210714 16:39:22.535" endtime="20210714 16:41:16.801"/>
+</suite>
+<status status="PASS" starttime="20210714 16:39:22.471" endtime="20210714 16:41:16.807"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Suites">Suites</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="News">Suites.News</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.9.0 on win32)" generated="20210714 16:39:22.329" rpa="false" schemaversion="2">
+<suite id="s1" name="Suites">
+<suite id="s1-s1" name="MachineTranslationTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\MachineTranslationTest.robot">
+<test id="s1-s1-t1" name="MachineTranslationTest">
+<kw name="Open My Browser" library="MachineKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.254" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.254" endtime="20210714 16:39:58.997"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:39:59.072" endtime="20210714 16:39:59.461"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.254" endtime="20210714 16:39:59.471"/>
+</kw>
+<kw name="Enter User Name" library="MachineKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:39:59.489" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:39:59.484" endtime="20210714 16:40:02.849"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:59.473" endtime="20210714 16:40:02.850"/>
+</kw>
+<kw name="Enter Password" library="MachineKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.862" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.854" endtime="20210714 16:40:03.836"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.851" endtime="20210714 16:40:03.837"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:05.881" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:03.838" endtime="20210714 16:40:05.882"/>
+</kw>
+<kw name="Submit" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:05.919" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:05.910" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:05.883" endtime="20210714 16:40:08.073"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:13.077" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.074" endtime="20210714 16:40:13.081"/>
+</kw>
+<kw name="Tools" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.086" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.084" endtime="20210714 16:40:13.246"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.083" endtime="20210714 16:40:13.247"/>
+</kw>
+<kw name="MachineTranslation" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Machine Translation')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.273" level="INFO">Clicking element 'xpath://h3[contains(text(),'Machine Translation')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.272" endtime="20210714 16:40:13.752"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.265" endtime="20210714 16:40:13.753"/>
+</kw>
+<kw name="ClickOnInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.792" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.776" endtime="20210714 16:40:14.189"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.754" endtime="20210714 16:40:14.190"/>
+</kw>
+<kw name="SelectInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.192" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.191" endtime="20210714 16:40:14.466"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.190" endtime="20210714 16:40:14.468"/>
+</kw>
+<kw name="ClickOnOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.473" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.470" endtime="20210714 16:40:14.863"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.469" endtime="20210714 16:40:14.865"/>
+</kw>
+<kw name="SelectOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.880" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.867" endtime="20210714 16:40:15.094"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.866" endtime="20210714 16:40:15.096"/>
+</kw>
+<kw name="ClickOnPasteText" library="MachineKeyword">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div[2]/div/div/div[1]/textarea</arg>
+<arg>How to claim income tax refund</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.099" level="INFO">Typing text 'How to claim income tax refund' into text field 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div[2]/div/div/div[1]/textarea'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.098" endtime="20210714 16:40:15.454"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.096" endtime="20210714 16:40:15.455"/>
+</kw>
+<kw name="ClickTranslate" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://a[contains(text(),'Translate Text')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.463" level="INFO">Clicking element 'xpath://a[contains(text(),'Translate Text')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.458" endtime="20210714 16:40:33.568"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.456" endtime="20210714 16:40:33.577"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:37.589" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:33.579" endtime="20210714 16:40:37.590"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>Machine.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.442" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Machine.png"&gt;&lt;img src="Machine.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:37.592" endtime="20210714 16:41:10.509"/>
+</kw>
+<kw name="Close My Browser" library="MachineKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:10.580" endtime="20210714 16:41:15.202"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:10.537" endtime="20210714 16:41:15.203"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.252" endtime="20210714 16:41:15.214"/>
+</test>
+<test id="s1-s1-t2" name="MachineTranslationUploadTest">
+<kw name="Open My Browser" library="MachineKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:41:15.254" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:41:15.247" endtime="20210714 16:41:26.197"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:41:26.200" endtime="20210714 16:41:26.469"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:15.242" endtime="20210714 16:41:26.469"/>
+</kw>
+<kw name="Enter User Name" library="MachineKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:26.487" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:41:26.473" endtime="20210714 16:41:26.890"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:26.470" endtime="20210714 16:41:26.890"/>
+</kw>
+<kw name="Enter Password" library="MachineKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:26.891" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:41:26.891" endtime="20210714 16:41:27.068"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:26.891" endtime="20210714 16:41:27.071"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:29.078" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:27.072" endtime="20210714 16:41:29.078"/>
+</kw>
+<kw name="Submit" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:29.080" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:41:29.079" endtime="20210714 16:41:29.162"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:29.079" endtime="20210714 16:41:29.163"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:34.171" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:29.163" endtime="20210714 16:41:34.171"/>
+</kw>
+<kw name="Tools" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.175" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.174" endtime="20210714 16:41:34.320"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.171" endtime="20210714 16:41:34.321"/>
+</kw>
+<kw name="MachineTranslation" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Machine Translation')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.325" level="INFO">Clicking element 'xpath://h3[contains(text(),'Machine Translation')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.323" endtime="20210714 16:41:34.465"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.322" endtime="20210714 16:41:34.466"/>
+</kw>
+<kw name="ClickOnInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.470" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.468" endtime="20210714 16:41:34.686"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.467" endtime="20210714 16:41:34.688"/>
+</kw>
+<kw name="SelectInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.690" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.689" endtime="20210714 16:41:34.843"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.688" endtime="20210714 16:41:34.845"/>
+</kw>
+<kw name="ClickOnOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.847" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.846" endtime="20210714 16:41:35.013"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.845" endtime="20210714 16:41:35.014"/>
+</kw>
+<kw name="SelectOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.015" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.015" endtime="20210714 16:41:35.117"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.014" endtime="20210714 16:41:35.119"/>
+</kw>
+<kw name="ClickOnRadio" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://body/app-root[1]/app-home[1]/app-machine-translation[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p-radiobutton[1]/div[1]/div[2]/span[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.121" level="INFO">Clicking element 'xpath://body/app-root[1]/app-home[1]/app-machine-translation[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p-radiobutton[1]/div[1]/div[2]/span[1]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.120" endtime="20210714 16:41:35.239"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.119" endtime="20210714 16:41:35.239"/>
+</kw>
+<kw name="SelectFile" library="MachineKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:41:35.242" endtime="20210714 16:41:35.376"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<arg>C:/Users/asutosh.jena/Documents/AI Playground/upload data/translate/eng.xlsx</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.382" level="INFO">Sending C:\Users\asutosh.jena\Documents\AI Playground\upload data\translate\eng.xlsx to browser.</msg>
+<status status="PASS" starttime="20210714 16:41:35.378" endtime="20210714 16:41:35.477"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.240" endtime="20210714 16:41:35.478"/>
+</kw>
+<kw name="ClickOnTranslateText" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[contains(text(),'Translate Document')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.481" level="INFO">Clicking element 'xpath://button[contains(text(),'Translate Document')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.481" endtime="20210714 16:41:35.578"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.479" endtime="20210714 16:41:35.579"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:39.584" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:35.580" endtime="20210714 16:41:39.584"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>MachineUpload.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:39.731" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="MachineUpload.png"&gt;&lt;img src="MachineUpload.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:41:39.585" endtime="20210714 16:41:39.732"/>
+</kw>
+<kw name="Close My Browser" library="MachineKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:39.733" endtime="20210714 16:41:41.995"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:39.732" endtime="20210714 16:41:41.995"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:15.231" endtime="20210714 16:41:41.995"/>
+</test>
+<status status="PASS" starttime="20210714 16:39:22.416" endtime="20210714 16:41:42.141"/>
+</suite>
+<status status="PASS" starttime="20210714 16:39:22.352" endtime="20210714 16:41:42.216"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Suites">Suites</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="MachineTranslationTest">Suites.MachineTranslationTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

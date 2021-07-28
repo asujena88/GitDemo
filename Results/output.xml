@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Rebot 4.0.3 (Python 3.9.0 on win32)" generated="20210714 16:41:43.592" rpa="false" schemaversion="2">
+<suite id="s1" name="Suites">
+<suite id="s1-s1" name="ArticleSummarizationTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\ArticleSummarizationTest.robot">
+<test id="s1-s1-t1" name="ArticleSummerizationTest">
+<kw name="Open My Browser" library="ArticleKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.300" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.299" endtime="20210714 16:40:01.504"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:40:01.672" endtime="20210714 16:40:02.668"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.296" endtime="20210714 16:40:02.796"/>
+</kw>
+<kw name="Enter User Name" library="ArticleKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.950" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.924" endtime="20210714 16:40:04.240"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.846" endtime="20210714 16:40:04.241"/>
+</kw>
+<kw name="Enter Password" library="ArticleKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:04.269" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:04.267" endtime="20210714 16:40:06.794"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:04.242" endtime="20210714 16:40:06.796"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:09.933" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:06.840" endtime="20210714 16:40:09.933"/>
+</kw>
+<kw name="Submit" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:10.015" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:09.985" endtime="20210714 16:40:10.370"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:09.954" endtime="20210714 16:40:10.371"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:15.384" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:10.371" endtime="20210714 16:40:15.391"/>
+</kw>
+<kw name="Tools" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.396" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.395" endtime="20210714 16:40:15.651"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.392" endtime="20210714 16:40:15.652"/>
+</kw>
+<kw name="Article Summerization" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Article Summarization')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.660" level="INFO">Clicking element 'xpath://h3[contains(text(),'Article Summarization')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.657" endtime="20210714 16:40:15.936"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.654" endtime="20210714 16:40:15.940"/>
+</kw>
+<kw name="Language" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.945" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.943" endtime="20210714 16:40:16.121"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.941" endtime="20210714 16:40:16.122"/>
+</kw>
+<kw name="Select Language" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:16.129" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:16.128" endtime="20210714 16:40:16.241"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:16.125" endtime="20210714 16:40:16.244"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:19.254" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:16.245" endtime="20210714 16:40:19.257"/>
+</kw>
+<kw name="EnterLink" library="ArticleKeyword">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div[2]/div[1]/div/div[1]/input</arg>
+<arg>${link}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:19.272" level="INFO">Typing text 'https://www.ndtv.com/education/online-classes-keep-students-in-maharashtras-slums-far-from-studies' into text field 'xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div[2]/div[1]/div/div[1]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:19.260" endtime="20210714 16:40:20.052"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:19.258" endtime="20210714 16:40:20.053"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:22.055" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:20.053" endtime="20210714 16:40:22.055"/>
+</kw>
+<kw name="GenerateSummary" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://a[contains(text(),'Generate Summary')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:22.061" level="INFO">Clicking element 'xpath://a[contains(text(),'Generate Summary')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:22.060" endtime="20210714 16:40:29.913"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:22.057" endtime="20210714 16:40:29.929"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>Article.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:09.626" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-Article.png"&gt;&lt;img src="0-Article.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:29.990" endtime="20210714 16:41:09.825"/>
+</kw>
+<kw name="Close My Browser" library="ArticleKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:10.071" endtime="20210714 16:41:15.222"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:09.957" endtime="20210714 16:41:15.225"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.294" endtime="20210714 16:41:15.233"/>
+</test>
+<test id="s1-s1-t2" name="ArticleSummerizationBulkURLTest">
+<kw name="Open My Browser" library="ArticleKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:41:15.284" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:41:15.268" endtime="20210714 16:41:26.615"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:41:26.622" endtime="20210714 16:41:26.780"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:15.260" endtime="20210714 16:41:26.780"/>
+</kw>
+<kw name="Enter User Name" library="ArticleKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:26.789" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:41:26.783" endtime="20210714 16:41:27.002"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:26.781" endtime="20210714 16:41:27.002"/>
+</kw>
+<kw name="Enter Password" library="ArticleKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:27.007" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:41:27.002" endtime="20210714 16:41:27.195"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:27.002" endtime="20210714 16:41:27.197"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:30.207" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:27.199" endtime="20210714 16:41:30.208"/>
+</kw>
+<kw name="Submit" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:30.211" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:41:30.210" endtime="20210714 16:41:30.282"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:30.209" endtime="20210714 16:41:30.283"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:35.286" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:30.283" endtime="20210714 16:41:35.286"/>
+</kw>
+<kw name="Tools" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.312" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.303" endtime="20210714 16:41:35.415"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.301" endtime="20210714 16:41:35.416"/>
+</kw>
+<kw name="Article Summerization" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Article Summarization')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.419" level="INFO">Clicking element 'xpath://h3[contains(text(),'Article Summarization')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.418" endtime="20210714 16:41:35.591"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.416" endtime="20210714 16:41:35.593"/>
+</kw>
+<kw name="ClickOnRadio" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://body/app-root[1]/app-home[1]/app-article-summarization[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p-radiobutton[1]/div[1]/div[2]/span[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.599" level="INFO">Clicking element 'xpath://body/app-root[1]/app-home[1]/app-article-summarization[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p-radiobutton[1]/div[1]/div[2]/span[1]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.597" endtime="20210714 16:41:35.737"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.595" endtime="20210714 16:41:35.739"/>
+</kw>
+<kw name="Language" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.744" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]/span'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.743" endtime="20210714 16:41:35.861"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.740" endtime="20210714 16:41:35.862"/>
+</kw>
+<kw name="Select Language" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.864" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.864" endtime="20210714 16:41:35.938"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.862" endtime="20210714 16:41:35.940"/>
+</kw>
+<kw name="FileUploadButton" library="ArticleKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:41:35.943" endtime="20210714 16:41:35.995"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.998" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.997" endtime="20210714 16:41:36.080"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.942" endtime="20210714 16:41:36.081"/>
+</kw>
+<kw name="SelectFile" library="ArticleKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:41:36.084" endtime="20210714 16:41:36.135"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<arg>C:/Users/asutosh.jena/Documents/AI Playground/upload data/summery/bulkurl.xlsx</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20210714 16:41:36.150" level="INFO">Sending C:\Users\asutosh.jena\Documents\AI Playground\upload data\summery\bulkurl.xlsx to browser.</msg>
+<status status="PASS" starttime="20210714 16:41:36.144" endtime="20210714 16:41:36.229"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:36.082" endtime="20210714 16:41:36.230"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:38.233" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:36.230" endtime="20210714 16:41:38.233"/>
+</kw>
+<kw name="GenerateSummary1" library="ArticleKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[2]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:38.237" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-article-summarization/div/div[2]/div/div[2]/div/div/div/div[2]/button'.</msg>
+<status status="PASS" starttime="20210714 16:41:38.236" endtime="20210714 16:41:38.346"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:38.234" endtime="20210714 16:41:38.347"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>ArticleBulk.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:38.585" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-ArticleBulk.png"&gt;&lt;img src="0-ArticleBulk.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:41:38.347" endtime="20210714 16:41:38.586"/>
+</kw>
+<kw name="Close My Browser" library="ArticleKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:38.587" endtime="20210714 16:41:42.511"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:38.586" endtime="20210714 16:41:42.512"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:15.250" endtime="20210714 16:41:42.512"/>
+</test>
+<status status="PASS" starttime="20210714 16:39:22.505" endtime="20210714 16:41:42.521"/>
+</suite>
+<suite id="s1-s2" name="AutoMLTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\AutoMLTest.robot">
+<test id="s1-s2-t1" name="AutoMLTest">
+<kw name="Open My Browser" library="AutoKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.236" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.235" endtime="20210714 16:39:59.587"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:39:59.634" endtime="20210714 16:40:00.702"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.229" endtime="20210714 16:40:01.610"/>
+</kw>
+<kw name="Enter User Name" library="AutoKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:01.678" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:40:01.658" endtime="20210714 16:40:03.897"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:01.615" endtime="20210714 16:40:03.897"/>
+</kw>
+<kw name="Enter Password" library="AutoKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:03.903" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:03.901" endtime="20210714 16:40:06.040"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:03.898" endtime="20210714 16:40:06.041"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:08.124" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:06.064" endtime="20210714 16:40:08.125"/>
+</kw>
+<kw name="Submit" library="AutoKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:08.187" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:08.175" endtime="20210714 16:40:08.312"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:08.133" endtime="20210714 16:40:08.313"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:12.315" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.313" endtime="20210714 16:40:12.316"/>
+</kw>
+<kw name="Tools" library="AutoKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.323" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.322" endtime="20210714 16:40:12.575"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.317" endtime="20210714 16:40:12.576"/>
+</kw>
+<kw name="ClickOnAutoML" library="AutoKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://div[1]/div[2]/a/div[2]/h3</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.582" level="INFO">Clicking element 'xpath://div[1]/div[2]/a/div[2]/h3'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.581" endtime="20210714 16:40:13.242"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.577" endtime="20210714 16:40:13.243"/>
+</kw>
+<kw name="FileUploadButton" library="AutoKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-auto-ml/div/div[2]/div/div[2]/div/div/div/div/p-fileupload/div/div[1]/span</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:13.285" endtime="20210714 16:40:13.517"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-auto-ml/div/div[2]/div/div[2]/div/div/div/div/p-fileupload/div/div[1]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.518" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-auto-ml/div/div[2]/div/div[2]/div/div/div/div/p-fileupload/div/div[1]/span'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.244" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="1-selenium-screenshot-1.png"&gt;&lt;img src="1-selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:13.664" endtime="20210714 16:41:10.527"/>
+</kw>
+<msg timestamp="20210714 16:41:10.898" level="FAIL">StaleElementReferenceException: Message: stale element reference: element is not attached to the page document
+  (Session info: chrome=91.0.4472.124)
+</msg>
+<status status="FAIL" starttime="20210714 16:40:13.517" endtime="20210714 16:41:10.900"/>
+</kw>
+<status status="FAIL" starttime="20210714 16:40:13.244" endtime="20210714 16:41:10.930"/>
+</kw>
+<kw name="SelectFile" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.001" endtime="20210714 16:41:11.014"/>
+</kw>
+<kw name="ClickOnLanguage" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.018" endtime="20210714 16:41:11.023"/>
+</kw>
+<kw name="SelectLanguage" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.024" endtime="20210714 16:41:11.024"/>
+</kw>
+<kw name="ClickOnDecesionTree" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.025" endtime="20210714 16:41:11.026"/>
+</kw>
+<kw name="ClickOnCountVectorizer" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.026" endtime="20210714 16:41:11.027"/>
+</kw>
+<kw name="ClickOnStartTraining" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.029" endtime="20210714 16:41:11.030"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>30</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20210714 16:41:11.035" endtime="20210714 16:41:11.037"/>
+</kw>
+<kw name="ClickOnCheckbox" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.038" endtime="20210714 16:41:11.039"/>
+</kw>
+<kw name="ClickonSave" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.041" endtime="20210714 16:41:11.042"/>
+</kw>
+<kw name="PopUpBox" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.043" endtime="20210714 16:41:11.049"/>
+</kw>
+<kw name="ClickOnCloseProject" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.050" endtime="20210714 16:41:11.051"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20210714 16:41:11.062" endtime="20210714 16:41:11.064"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>AuoML.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" starttime="20210714 16:41:11.065" endtime="20210714 16:41:11.068"/>
+</kw>
+<kw name="Close My Browser" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.069" endtime="20210714 16:41:11.074"/>
+</kw>
+<status status="FAIL" starttime="20210714 16:39:23.229" endtime="20210714 16:41:11.100">StaleElementReferenceException: Message: stale element reference: element is not attached to the page document
+  (Session info: chrome=91.0.4472.124)
+</status>
+</test>
+<status status="FAIL" starttime="20210714 16:39:22.269" endtime="20210714 16:41:11.303"/>
+</suite>
+<suite id="s1-s3" name="LoginPageTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\LoginPageTest.robot">
+<test id="s1-s3-t1" name="LoginTest">
+<kw name="Open My Browser" library="LoginKeywords">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.219" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.217" endtime="20210714 16:40:01.506"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:40:01.680" endtime="20210714 16:40:02.470"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.209" endtime="20210714 16:40:02.492"/>
+</kw>
+<kw name="Enter User Name" library="LoginKeywords">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.653" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.528" endtime="20210714 16:40:03.944"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.498" endtime="20210714 16:40:03.953"/>
+</kw>
+<kw name="Enter Password" library="LoginKeywords">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:03.961" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:03.960" endtime="20210714 16:40:06.043"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:03.953" endtime="20210714 16:40:06.044"/>
+</kw>
+<kw name="Submitclick" library="LoginKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:06.076" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:06.054" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:06.045" endtime="20210714 16:40:08.081"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>Login.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:12.673" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="2-selenium-screenshot-1.png"&gt;&lt;img src="2-selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:41:11.243" endtime="20210714 16:41:12.674"/>
+</kw>
+<msg timestamp="20210714 16:41:12.904" level="FAIL">TimeoutException: Message: timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=91.0.4472.124)
+</msg>
+<status status="FAIL" starttime="20210714 16:40:08.082" endtime="20210714 16:41:12.904"/>
+</kw>
+<kw name="Close My Browser" library="LoginKeywords">
+<status status="NOT RUN" starttime="20210714 16:41:12.906" endtime="20210714 16:41:12.906"/>
+</kw>
+<status status="FAIL" starttime="20210714 16:39:23.209" endtime="20210714 16:41:12.912">TimeoutException: Message: timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=91.0.4472.124)
+</status>
+</test>
+<status status="FAIL" starttime="20210714 16:39:22.357" endtime="20210714 16:41:12.936"/>
+</suite>
+<suite id="s1-s4" name="MachineTranslationTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\MachineTranslationTest.robot">
+<test id="s1-s4-t1" name="MachineTranslationTest">
+<kw name="Open My Browser" library="MachineKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.254" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.254" endtime="20210714 16:39:58.997"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:39:59.072" endtime="20210714 16:39:59.461"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.254" endtime="20210714 16:39:59.471"/>
+</kw>
+<kw name="Enter User Name" library="MachineKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:39:59.489" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:39:59.484" endtime="20210714 16:40:02.849"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:59.473" endtime="20210714 16:40:02.850"/>
+</kw>
+<kw name="Enter Password" library="MachineKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.862" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.854" endtime="20210714 16:40:03.836"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.851" endtime="20210714 16:40:03.837"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:05.881" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:03.838" endtime="20210714 16:40:05.882"/>
+</kw>
+<kw name="Submit" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:05.919" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:05.910" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:05.883" endtime="20210714 16:40:08.073"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:13.077" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.074" endtime="20210714 16:40:13.081"/>
+</kw>
+<kw name="Tools" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.086" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.084" endtime="20210714 16:40:13.246"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.083" endtime="20210714 16:40:13.247"/>
+</kw>
+<kw name="MachineTranslation" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Machine Translation')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.273" level="INFO">Clicking element 'xpath://h3[contains(text(),'Machine Translation')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.272" endtime="20210714 16:40:13.752"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.265" endtime="20210714 16:40:13.753"/>
+</kw>
+<kw name="ClickOnInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.792" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.776" endtime="20210714 16:40:14.189"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.754" endtime="20210714 16:40:14.190"/>
+</kw>
+<kw name="SelectInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.192" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.191" endtime="20210714 16:40:14.466"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.190" endtime="20210714 16:40:14.468"/>
+</kw>
+<kw name="ClickOnOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.473" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.470" endtime="20210714 16:40:14.863"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.469" endtime="20210714 16:40:14.865"/>
+</kw>
+<kw name="SelectOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.880" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.867" endtime="20210714 16:40:15.094"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.866" endtime="20210714 16:40:15.096"/>
+</kw>
+<kw name="ClickOnPasteText" library="MachineKeyword">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div[2]/div/div/div[1]/textarea</arg>
+<arg>How to claim income tax refund</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.099" level="INFO">Typing text 'How to claim income tax refund' into text field 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div[2]/div/div/div[1]/textarea'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.098" endtime="20210714 16:40:15.454"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.096" endtime="20210714 16:40:15.455"/>
+</kw>
+<kw name="ClickTranslate" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://a[contains(text(),'Translate Text')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.463" level="INFO">Clicking element 'xpath://a[contains(text(),'Translate Text')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.458" endtime="20210714 16:40:33.568"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.456" endtime="20210714 16:40:33.577"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:37.589" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:33.579" endtime="20210714 16:40:37.590"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>Machine.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.442" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="3-Machine.png"&gt;&lt;img src="3-Machine.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:37.592" endtime="20210714 16:41:10.509"/>
+</kw>
+<kw name="Close My Browser" library="MachineKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:10.580" endtime="20210714 16:41:15.202"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:10.537" endtime="20210714 16:41:15.203"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.252" endtime="20210714 16:41:15.214"/>
+</test>
+<test id="s1-s4-t2" name="MachineTranslationUploadTest">
+<kw name="Open My Browser" library="MachineKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:41:15.254" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:41:15.247" endtime="20210714 16:41:26.197"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:41:26.200" endtime="20210714 16:41:26.469"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:15.242" endtime="20210714 16:41:26.469"/>
+</kw>
+<kw name="Enter User Name" library="MachineKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:26.487" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:41:26.473" endtime="20210714 16:41:26.890"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:26.470" endtime="20210714 16:41:26.890"/>
+</kw>
+<kw name="Enter Password" library="MachineKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:26.891" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:41:26.891" endtime="20210714 16:41:27.068"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:26.891" endtime="20210714 16:41:27.071"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:29.078" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:27.072" endtime="20210714 16:41:29.078"/>
+</kw>
+<kw name="Submit" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:29.080" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:41:29.079" endtime="20210714 16:41:29.162"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:29.079" endtime="20210714 16:41:29.163"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:34.171" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:29.163" endtime="20210714 16:41:34.171"/>
+</kw>
+<kw name="Tools" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.175" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.174" endtime="20210714 16:41:34.320"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.171" endtime="20210714 16:41:34.321"/>
+</kw>
+<kw name="MachineTranslation" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Machine Translation')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.325" level="INFO">Clicking element 'xpath://h3[contains(text(),'Machine Translation')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.323" endtime="20210714 16:41:34.465"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.322" endtime="20210714 16:41:34.466"/>
+</kw>
+<kw name="ClickOnInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.470" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[2]/p-dropdown/div/div[2]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.468" endtime="20210714 16:41:34.686"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.467" endtime="20210714 16:41:34.688"/>
+</kw>
+<kw name="SelectInputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.690" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.689" endtime="20210714 16:41:34.843"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.688" endtime="20210714 16:41:34.845"/>
+</kw>
+<kw name="ClickOnOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:34.847" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div'.</msg>
+<status status="PASS" starttime="20210714 16:41:34.846" endtime="20210714 16:41:35.013"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:34.845" endtime="20210714 16:41:35.014"/>
+</kw>
+<kw name="SelectOutputLanguage" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.015" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[1]/div/div[3]/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[7]/li/span'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.015" endtime="20210714 16:41:35.117"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.014" endtime="20210714 16:41:35.119"/>
+</kw>
+<kw name="ClickOnRadio" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://body/app-root[1]/app-home[1]/app-machine-translation[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p-radiobutton[1]/div[1]/div[2]/span[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.121" level="INFO">Clicking element 'xpath://body/app-root[1]/app-home[1]/app-machine-translation[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p-radiobutton[1]/div[1]/div[2]/span[1]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.120" endtime="20210714 16:41:35.239"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.119" endtime="20210714 16:41:35.239"/>
+</kw>
+<kw name="SelectFile" library="MachineKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:41:35.242" endtime="20210714 16:41:35.376"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-machine-translation/div/div[2]/div/div[2]/div/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<arg>C:/Users/asutosh.jena/Documents/AI Playground/upload data/translate/eng.xlsx</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.382" level="INFO">Sending C:\Users\asutosh.jena\Documents\AI Playground\upload data\translate\eng.xlsx to browser.</msg>
+<status status="PASS" starttime="20210714 16:41:35.378" endtime="20210714 16:41:35.477"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.240" endtime="20210714 16:41:35.478"/>
+</kw>
+<kw name="ClickOnTranslateText" library="MachineKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[contains(text(),'Translate Document')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:41:35.481" level="INFO">Clicking element 'xpath://button[contains(text(),'Translate Document')]'.</msg>
+<status status="PASS" starttime="20210714 16:41:35.481" endtime="20210714 16:41:35.578"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:35.479" endtime="20210714 16:41:35.579"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:41:39.584" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:41:35.580" endtime="20210714 16:41:39.584"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>MachineUpload.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:39.731" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="3-MachineUpload.png"&gt;&lt;img src="3-MachineUpload.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:41:39.585" endtime="20210714 16:41:39.732"/>
+</kw>
+<kw name="Close My Browser" library="MachineKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:39.733" endtime="20210714 16:41:41.995"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:39.732" endtime="20210714 16:41:41.995"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:15.231" endtime="20210714 16:41:41.995"/>
+</test>
+<status status="PASS" starttime="20210714 16:39:22.416" endtime="20210714 16:41:42.141"/>
+</suite>
+<suite id="s1-s5" name="News" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\News.robot">
+<test id="s1-s5-t1" name="NewsClassificationTest">
+<kw name="Open My Browser" library="NewsKeywords">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.285" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.285" endtime="20210714 16:39:57.771"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:39:57.804" endtime="20210714 16:39:58.990"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.283" endtime="20210714 16:39:58.998"/>
+</kw>
+<kw name="Enter User Name" library="NewsKeywords">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:39:59.022" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:39:59.013" endtime="20210714 16:40:02.175"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:59.000" endtime="20210714 16:40:02.175"/>
+</kw>
+<kw name="Enter Password" library="NewsKeywords">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.180" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.178" endtime="20210714 16:40:03.188"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.176" endtime="20210714 16:40:03.189"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:05.245" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:03.190" endtime="20210714 16:40:05.292"/>
+</kw>
+<kw name="Submit" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:05.772" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:05.683" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:05.332" endtime="20210714 16:40:08.081"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:10.084" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.082" endtime="20210714 16:40:10.093"/>
+</kw>
+<kw name="Tools" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:10.105" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:10.104" endtime="20210714 16:40:11.228"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:10.094" endtime="20210714 16:40:11.232"/>
+</kw>
+<kw name="News" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'News Classification')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:11.237" level="INFO">Clicking element 'xpath://h3[contains(text(),'News Classification')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:11.236" endtime="20210714 16:40:11.880"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:11.233" endtime="20210714 16:40:11.881"/>
+</kw>
+<kw name="Language" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'Select Language')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:11.889" level="INFO">Clicking element 'xpath://span[contains(text(),'Select Language')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:11.884" endtime="20210714 16:40:12.131"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:11.882" endtime="20210714 16:40:12.132"/>
+</kw>
+<kw name="Select Language" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://p-dropdownitem[3]/li/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.135" level="INFO">Clicking element 'xpath://p-dropdownitem[3]/li/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.134" endtime="20210714 16:40:12.487"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.133" endtime="20210714 16:40:12.492"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:17.504" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:12.493" endtime="20210714 16:40:17.505"/>
+</kw>
+<kw name="FileUploadButton" library="NewsKeywords">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:17.512" endtime="20210714 16:40:17.708"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:17.712" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:17.710" endtime="20210714 16:40:17.981"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:17.506" endtime="20210714 16:40:17.981"/>
+</kw>
+<kw name="SelectFile" library="NewsKeywords">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:17.983" endtime="20210714 16:40:18.075"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-news-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<arg>C:/Users/asutosh.jena/Documents/AI Playground/upload data/new/test_api_chinese.xlsx</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20210714 16:40:18.151" level="INFO">Sending C:\Users\asutosh.jena\Documents\AI Playground\upload data\new\test_api_chinese.xlsx to browser.</msg>
+<status status="PASS" starttime="20210714 16:40:18.087" endtime="20210714 16:40:18.379"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:17.982" endtime="20210714 16:40:18.379"/>
+</kw>
+<kw name="Start" library="NewsKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html[1]/body[1]/app-root[1]/app-home[1]/app-news-classification[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[3]/button[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:18.391" level="INFO">Clicking element 'xpath:/html[1]/body[1]/app-root[1]/app-home[1]/app-news-classification[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[3]/button[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:18.385" endtime="20210714 16:40:18.698"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:18.380" endtime="20210714 16:40:18.698"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:20.703" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:18.699" endtime="20210714 16:40:20.703"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>News.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.616" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="4-News.png"&gt;&lt;img src="4-News.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:20.705" endtime="20210714 16:41:10.780"/>
+</kw>
+<kw name="Close My Browser" library="NewsKeywords">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:10.878" endtime="20210714 16:41:16.778"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:10.848" endtime="20210714 16:41:16.780"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.281" endtime="20210714 16:41:16.784"/>
+</test>
+<status status="PASS" starttime="20210714 16:39:22.535" endtime="20210714 16:41:16.801"/>
+</suite>
+<suite id="s1-s6" name="PatentRelevancyCheckTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\PatentRelevancyCheckTest.robot">
+<test id="s1-s6-t1" name="ArticleSummerizationTest">
+<kw name="Open My Browser" library="PatentKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.219" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.219" endtime="20210714 16:39:59.865"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:40:00.004" endtime="20210714 16:40:01.873"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.219" endtime="20210714 16:40:01.958"/>
+</kw>
+<kw name="Enter User Name" library="PatentKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.274" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.082" endtime="20210714 16:40:03.889"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:01.965" endtime="20210714 16:40:03.890"/>
+</kw>
+<kw name="Enter Password" library="PatentKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:03.895" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:03.893" endtime="20210714 16:40:04.297"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:03.891" endtime="20210714 16:40:04.298"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:06.347" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:04.299" endtime="20210714 16:40:06.347"/>
+</kw>
+<kw name="Submit" library="PatentKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:06.536" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:06.479" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:06.349" endtime="20210714 16:40:08.074"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:12.076" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.074" endtime="20210714 16:40:12.079"/>
+</kw>
+<kw name="Tools" library="PatentKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.084" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.082" endtime="20210714 16:40:12.419"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.080" endtime="20210714 16:40:12.420"/>
+</kw>
+<kw name="ClickOnMachine" library="PatentKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://h3[contains(text(),'Patent Relevancy Check')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.426" level="INFO">Clicking element 'xpath://h3[contains(text(),'Patent Relevancy Check')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.425" endtime="20210714 16:40:13.211"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.423" endtime="20210714 16:40:13.212"/>
+</kw>
+<kw name="FileUploadButton" library="PatentKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:13.259" endtime="20210714 16:40:13.515"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.520" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span'.</msg>
+<status status="PASS" starttime="20210714 16:40:13.517" endtime="20210714 16:40:13.678"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.212" endtime="20210714 16:40:13.679"/>
+</kw>
+<kw name="SelectFile" library="PatentKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:13.682" endtime="20210714 16:40:13.805"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[1]/p-fileupload/div/div[1]/span/input</arg>
+<arg>C:/Users/asutosh.jena/Documents/AI Playground/upload data/patent/Patent_RNR_Template.xlsx</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.875" level="INFO">Sending C:\Users\asutosh.jena\Documents\AI Playground\upload data\patent\Patent_RNR_Template.xlsx to browser.</msg>
+<status status="PASS" starttime="20210714 16:40:13.814" endtime="20210714 16:40:14.485"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:13.680" endtime="20210714 16:40:14.487"/>
+</kw>
+<kw name="ClickOnLanguage" library="PatentKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[2]/div/p-dropdown/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.498" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-patent-classification/div/div[2]/div/div[2]/div/div/div[2]/div/p-dropdown/div'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.490" endtime="20210714 16:40:14.779"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.487" endtime="20210714 16:40:14.780"/>
+</kw>
+<kw name="SelectLanguage" library="PatentKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[contains(text(),'English')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:14.787" level="INFO">Clicking element 'xpath://span[contains(text(),'English')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:14.784" endtime="20210714 16:40:15.063"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:14.782" endtime="20210714 16:40:15.064"/>
+</kw>
+<kw name="ClickOnStart" library="PatentKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[contains(text(),'Start Selection')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:15.073" level="INFO">Clicking element 'xpath://button[contains(text(),'Start Selection')]'.</msg>
+<status status="PASS" starttime="20210714 16:40:15.068" endtime="20210714 16:40:15.233"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:15.066" endtime="20210714 16:40:15.235"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:18.256" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:15.236" endtime="20210714 16:40:18.281"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>Patent.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.841" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="5-Patent.png"&gt;&lt;img src="5-Patent.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:18.282" endtime="20210714 16:41:10.916"/>
+</kw>
+<kw name="Close My Browser" library="PatentKeyword">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210714 16:41:11.123" endtime="20210714 16:41:16.473"/>
+</kw>
+<status status="PASS" starttime="20210714 16:41:11.045" endtime="20210714 16:41:16.475"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.219" endtime="20210714 16:41:16.479"/>
+</test>
+<status status="PASS" starttime="20210714 16:39:22.281" endtime="20210714 16:41:16.778"/>
+</suite>
+<doc>[https://pabot.org/?ref=log|Pabot] result from 6 executions.</doc>
+<status status="FAIL" starttime="20210714 16:39:22.196" endtime="20210714 16:41:42.531"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="6" fail="2" skip="0" id="s1" name="Suites">Suites</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="ArticleSummarizationTest">Suites.ArticleSummarizationTest</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s2" name="AutoMLTest">Suites.AutoMLTest</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s3" name="LoginPageTest">Suites.LoginPageTest</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s4" name="MachineTranslationTest">Suites.MachineTranslationTest</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s5" name="News">Suites.News</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s6" name="PatentRelevancyCheckTest">Suites.PatentRelevancyCheckTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

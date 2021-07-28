@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.9.0 on win32)" generated="20210714 16:39:22.162" rpa="false" schemaversion="2">
+<suite id="s1" name="Suites">
+<suite id="s1-s1" name="LoginPageTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\LoginPageTest.robot">
+<test id="s1-s1-t1" name="LoginTest">
+<kw name="Open My Browser" library="LoginKeywords">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.219" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.217" endtime="20210714 16:40:01.506"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:40:01.680" endtime="20210714 16:40:02.470"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.209" endtime="20210714 16:40:02.492"/>
+</kw>
+<kw name="Enter User Name" library="LoginKeywords">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:02.653" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:40:02.528" endtime="20210714 16:40:03.944"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:02.498" endtime="20210714 16:40:03.953"/>
+</kw>
+<kw name="Enter Password" library="LoginKeywords">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:03.961" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:03.960" endtime="20210714 16:40:06.043"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:03.953" endtime="20210714 16:40:06.044"/>
+</kw>
+<kw name="Submitclick" library="LoginKeywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:06.076" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:06.054" endtime="20210714 16:40:08.073"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:06.045" endtime="20210714 16:40:08.081"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>Login.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:12.673" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:41:11.243" endtime="20210714 16:41:12.674"/>
+</kw>
+<msg timestamp="20210714 16:41:12.904" level="FAIL">TimeoutException: Message: timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=91.0.4472.124)
+</msg>
+<status status="FAIL" starttime="20210714 16:40:08.082" endtime="20210714 16:41:12.904"/>
+</kw>
+<kw name="Close My Browser" library="LoginKeywords">
+<status status="NOT RUN" starttime="20210714 16:41:12.906" endtime="20210714 16:41:12.906"/>
+</kw>
+<status status="FAIL" starttime="20210714 16:39:23.209" endtime="20210714 16:41:12.912">TimeoutException: Message: timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=91.0.4472.124)
+</status>
+</test>
+<status status="FAIL" starttime="20210714 16:39:22.357" endtime="20210714 16:41:12.936"/>
+</suite>
+<status status="FAIL" starttime="20210714 16:39:22.278" endtime="20210714 16:41:12.942"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Suites">Suites</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="LoginPageTest">Suites.LoginPageTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

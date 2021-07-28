@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.9.0 on win32)" generated="20210714 16:39:22.165" rpa="false" schemaversion="2">
+<suite id="s1" name="Suites">
+<suite id="s1-s1" name="AutoMLTest" source="C:\Users\asutosh.jena\PycharmProjects\AIRA_Robot_Framework\TestCases\AutoMLTest.robot">
+<test id="s1-s1-t1" name="AutoMLTest">
+<kw name="Open My Browser" library="AutoKeyword">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210714 16:39:23.236" level="INFO">Opening browser 'chrome' to base url 'https://aira.evalueserve.com/login'.</msg>
+<status status="PASS" starttime="20210714 16:39:23.235" endtime="20210714 16:39:59.587"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210714 16:39:59.634" endtime="20210714 16:40:00.702"/>
+</kw>
+<status status="PASS" starttime="20210714 16:39:23.229" endtime="20210714 16:40:01.610"/>
+</kw>
+<kw name="Enter User Name" library="AutoKeyword">
+<arg>${username}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginUserName}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:01.678" level="INFO">Typing text 'test@evalueserve.com' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20210714 16:40:01.658" endtime="20210714 16:40:03.897"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:01.615" endtime="20210714 16:40:03.897"/>
+</kw>
+<kw name="Enter Password" library="AutoKeyword">
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${txt_loginPassword}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:03.903" level="INFO">Typing text 'evs1234$' into text field 'name:pass'.</msg>
+<status status="PASS" starttime="20210714 16:40:03.901" endtime="20210714 16:40:06.040"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:03.898" endtime="20210714 16:40:06.041"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:08.124" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:06.064" endtime="20210714 16:40:08.125"/>
+</kw>
+<kw name="Submit" library="AutoKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-login/div/div/form/div[4]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:08.187" level="INFO">Clicking element 'xpath:/html/body/app-root/app-login/div/div/form/div[4]/input'.</msg>
+<status status="PASS" starttime="20210714 16:40:08.175" endtime="20210714 16:40:08.312"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:08.133" endtime="20210714 16:40:08.313"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210714 16:40:12.315" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20210714 16:40:08.313" endtime="20210714 16:40:12.316"/>
+</kw>
+<kw name="Tools" library="AutoKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id='navbarSupportedContent']/ul/li[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.323" level="INFO">Clicking element 'xpath://*[@id='navbarSupportedContent']/ul/li[1]'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.322" endtime="20210714 16:40:12.575"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.317" endtime="20210714 16:40:12.576"/>
+</kw>
+<kw name="ClickOnAutoML" library="AutoKeyword">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://div[1]/div[2]/a/div[2]/h3</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:12.582" level="INFO">Clicking element 'xpath://div[1]/div[2]/a/div[2]/h3'.</msg>
+<status status="PASS" starttime="20210714 16:40:12.581" endtime="20210714 16:40:13.242"/>
+</kw>
+<status status="PASS" starttime="20210714 16:40:12.577" endtime="20210714 16:40:13.243"/>
+</kw>
+<kw name="FileUploadButton" library="AutoKeyword">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-auto-ml/div/div[2]/div/div[2]/div/div/div/div/p-fileupload/div/div[1]/span</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20210714 16:40:13.285" endtime="20210714 16:40:13.517"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/app-root/app-home/app-auto-ml/div/div[2]/div/div[2]/div/div/div/div/p-fileupload/div/div[1]/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210714 16:40:13.518" level="INFO">Clicking element 'xpath:/html/body/app-root/app-home/app-auto-ml/div/div[2]/div/div[2]/div/div/div/div/p-fileupload/div/div[1]/span'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210714 16:41:10.244" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210714 16:40:13.664" endtime="20210714 16:41:10.527"/>
+</kw>
+<msg timestamp="20210714 16:41:10.898" level="FAIL">StaleElementReferenceException: Message: stale element reference: element is not attached to the page document
+  (Session info: chrome=91.0.4472.124)
+</msg>
+<status status="FAIL" starttime="20210714 16:40:13.517" endtime="20210714 16:41:10.900"/>
+</kw>
+<status status="FAIL" starttime="20210714 16:40:13.244" endtime="20210714 16:41:10.930"/>
+</kw>
+<kw name="SelectFile" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.001" endtime="20210714 16:41:11.014"/>
+</kw>
+<kw name="ClickOnLanguage" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.018" endtime="20210714 16:41:11.023"/>
+</kw>
+<kw name="SelectLanguage" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.024" endtime="20210714 16:41:11.024"/>
+</kw>
+<kw name="ClickOnDecesionTree" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.025" endtime="20210714 16:41:11.026"/>
+</kw>
+<kw name="ClickOnCountVectorizer" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.026" endtime="20210714 16:41:11.027"/>
+</kw>
+<kw name="ClickOnStartTraining" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.029" endtime="20210714 16:41:11.030"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>30</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20210714 16:41:11.035" endtime="20210714 16:41:11.037"/>
+</kw>
+<kw name="ClickOnCheckbox" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.038" endtime="20210714 16:41:11.039"/>
+</kw>
+<kw name="ClickonSave" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.041" endtime="20210714 16:41:11.042"/>
+</kw>
+<kw name="PopUpBox" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.043" endtime="20210714 16:41:11.049"/>
+</kw>
+<kw name="ClickOnCloseProject" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.050" endtime="20210714 16:41:11.051"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20210714 16:41:11.062" endtime="20210714 16:41:11.064"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>AuoML.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" starttime="20210714 16:41:11.065" endtime="20210714 16:41:11.068"/>
+</kw>
+<kw name="Close My Browser" library="AutoKeyword">
+<status status="NOT RUN" starttime="20210714 16:41:11.069" endtime="20210714 16:41:11.074"/>
+</kw>
+<status status="FAIL" starttime="20210714 16:39:23.229" endtime="20210714 16:41:11.100">StaleElementReferenceException: Message: stale element reference: element is not attached to the page document
+  (Session info: chrome=91.0.4472.124)
+</status>
+</test>
+<status status="FAIL" starttime="20210714 16:39:22.269" endtime="20210714 16:41:11.303"/>
+</suite>
+<status status="FAIL" starttime="20210714 16:39:22.197" endtime="20210714 16:41:11.341"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Suites">Suites</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="AutoMLTest">Suites.AutoMLTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
