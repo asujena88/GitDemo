@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>APITesting_report.html</h1>
+    <p>Report generated on 09-Aug-2021 at 19:51:25 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>C:\Program Files\Java\jdk1.8.0_271\bin</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "0.13.1", "py": "1.10.0", "pytest": "6.2.4"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.18362-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"html": "3.1.1", "metadata": "1.11.0"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.9.0</td></tr></table>
+    <h2>Summary</h2>
+    <p>20 tests ran in 7.49 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">13 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">7 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_GetPrediction.py::Test_GetPrediction::test8</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;Test_GetPrediction.Test_GetPrediction object at 0x000001C10F8AFA90&gt;<br/><br/>    def test8(self):<br/>      payload={&#x27;ProjectID&#x27;: &#x27;PID100137&#x27;,<br/>      &#x27;ModelID&#x27;: &#x27;7b78839470e28e20fabe0a77cf4bac34&#x27;,<br/>      &#x27;apikey&#x27;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;}<br/>      files=[<br/>&gt;     (&#x27;File&#x27;,(&#x27;Testing Data .xlsx&#x27;, open(&#x27;Files/Testing Data .xlsx&#x27;, &#x27;rb&#x27;), &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>      ]<br/><span class="error">E     FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/Testing Data .xlsx&#x27;</span><br/><br/>APITesting\Test_GetPrediction.py:11: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_News.py::Test_News::test5</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;Test_News.Test_News object at 0x000001C10F8EDE80&gt;<br/><br/>    def test5(self):<br/>      payload={&#x27;apikey&#x27;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;,<br/>      &#x27;Language&#x27;: &#x27;English&#x27;}<br/>      files=[<br/>&gt;     (&#x27;File&#x27;,(&#x27;test_api_english.xlsx&#x27;, open(&#x27;Files/test_api_english.xlsx&#x27;, &#x27;rb&#x27;), &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>      ]<br/><span class="error">E     FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/test_api_english.xlsx&#x27;</span><br/><br/>APITesting\Test_News.py:10: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_StartTraining.py::Test_StartTraining::test7</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;Test_StartTraining.Test_StartTraining object at 0x000001C110142820&gt;<br/><br/>    def test7(self):<br/>      payload={&#x27;Language&#x27;: &#x27;English&#x27;,<br/>      &#x27;AlgInfo&#x27;: &#x27;Count_Vectorizer,Decision_Tree&#x27;,<br/>      &#x27;apikey&#x27;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;}<br/>      files=[<br/>&gt;     (&#x27;File&#x27;,(&#x27;Testing Data .xlsx&#x27;, open(&#x27;Files/Testing Data .xlsx&#x27;, &#x27;rb&#x27;), &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>      ]<br/><span class="error">E     FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/Testing Data .xlsx&#x27;</span><br/><br/>APITesting\Test_StartTraining.py:11: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_StarttrainingPatent.py::Test_StarttrainingPatent::test12</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;Test_StarttrainingPatent.Test_StarttrainingPatent object at 0x000001C110152C70&gt;<br/><br/>    def test12(self):<br/>        payload = {&#x27;apikey&#x27;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;,<br/>                   &#x27;Language&#x27;: &#x27;English&#x27;}<br/>        files = [<br/>&gt;           (&#x27;File&#x27;, (&#x27;Patent_RNR_Template.xlsx&#x27;, open(<br/>                &#x27;Files/Patent_RNR_Template.xlsx&#x27;,<br/>                &#x27;rb&#x27;), &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>        ]<br/><span class="error">E       FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/Patent_RNR_Template.xlsx&#x27;</span><br/><br/>APITesting\Test_StarttrainingPatent.py:11: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_TagRemaining.py::Test_TagRemaining::test14</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;Test_TagRemaining.Test_TagRemaining object at 0x000001C110152B20&gt;<br/><br/>    def test14(self):<br/>        payload = {&#x27;RequestID&#x27;: &#x27;386f52d3d9fecdd99cbbe1eadba307fa&#x27;,<br/>                   &#x27;apikey&#x27;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;}<br/>        files = [<br/>&gt;           (&#x27;Data&#x27;, (&#x27;Patent_RNR_Template.xlsx&#x27;, open(&#x27;Files/Patent_RNR_Template.xlsx&#x27;, &#x27;rb&#x27;),<br/>                      &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>        ]<br/><span class="error">E       FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/Patent_RNR_Template.xlsx&#x27;</span><br/><br/>APITesting\Test_TagRemaining.py:11: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_TopicModel.py::Test_TopicModel::test4</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;Test_TopicModel.Test_TopicModel object at 0x000001C10F8EDC10&gt;<br/><br/>    def test4(self):<br/>        payload = {&#x27;apikey&#x27;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;}<br/>        files = [<br/>&gt;           (&#x27;File&#x27;, (&#x27;TopicModel.xlsx&#x27;, open(&#x27;Files/TopicModel.xlsx&#x27;, &#x27;rb&#x27;),<br/>                      &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>        ]<br/><span class="error">E       FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/TopicModel.xlsx&#x27;</span><br/><br/>APITesting\Test_TopicModel.py:10: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">APITesting/Test_TranslateFile.py::Test_TranslateFile::test3</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">Self = &lt;Test_TranslateFile.Test_TranslateFile object at 0x000001C1101428E0&gt;<br/><br/>    def test3(Self):<br/>        payload = {<br/>            &quot;TranslateFrom&quot;: &quot;English&quot;,<br/>            &quot;TranslateTo&quot;: &quot;Hindi&quot;,<br/>            &quot;apikey&quot;: &#x27;d0f4ac5d0ddf6f4a7bcedce7904f054f&#x27;<br/>        }<br/>    <br/>        files = [<br/>&gt;           (&#x27;File&#x27;, (&#x27;eng.xlsx&#x27;, open(&#x27;Files/eng.xlsx&#x27;, &#x27;rb&#x27;),<br/>                      &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;))<br/>        ]<br/><span class="error">E       FileNotFoundError: [Errno 2] No such file or directory: &#x27;Files/eng.xlsx&#x27;</span><br/><br/>APITesting\Test_TranslateFile.py:18: FileNotFoundError<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_CloseProject.py::Test_CloseProject::test11</td>
+          <td class="col-duration">0.54</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>&quot;Already closed!&quot;
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_CloseprojectPatent.py::Test_CloseprojectPatent::test18</td>
+          <td class="col-duration">0.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>&lt;h1&gt;Server Error (500)&lt;/h1&gt;
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_ExposeModel.py::test9</td>
+          <td class="col-duration">0.43</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Result&quot;:[{&quot;TrainingID&quot;:&quot;1&quot;,&quot;Result&quot;:[{&quot;Segmenter&quot;:&quot;None&quot;,&quot;Word_Vectorizer&quot;:&quot;Count_Vectorizer&quot;,&quot;Classification_Algo&quot;:&quot;Decision_Tree&quot;,&quot;performanceReport&quot;:{&quot;accuracy&quot;:0.9053254437869822,&quot;recall&quot;:0.8273447322102087,&quot;precision&quot;:0.85628078817734,&quot;classificationReport&quot;:{&quot;ANIMAL&quot;:{&quot;precision&quot;:0.7816,&quot;recall&quot;:0.701,&quot;f1-score&quot;:0.7391,&quot;support&quot;:97},&quot;HUMAN&quot;:{&quot;precision&quot;:0.931,&quot;recall&quot;:0.9537,&quot;f1-score&quot;:0.9422,&quot;support&quot;:410},&quot;accuracy&quot;:0.9053254437869822,&quot;macro avg&quot;:{&quot;precision&quot;:0.8563,&quot;recall&quot;:0.8273,&quot;f1-score&quot;:0.8406,&quot;support&quot;:507},&quot;weighted avg&quot;:{&quot;precision&quot;:0.9024,&quot;recall&quot;:0.9053,&quot;f1-score&quot;:0.9033,&quot;support&quot;:507}}},&quot;save_status&quot;:&quot;closed&quot;,&quot;exposed&quot;:&quot;True&quot;,&quot;model_id&quot;:&quot;7b78839470e28e20fabe0a77cf4bac34&quot;,&quot;model_name&quot;:&quot;Test&quot;}]}]}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_ExposeedModel.py::Test_ExposeedModel::test10</td>
+          <td class="col-duration">0.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Exposed&quot;:[{&quot;project_id&quot;:&quot;PID100085&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[{&quot;AlgName&quot;:{&quot;Segmenter&quot;:&quot;None&quot;,&quot;Word_Vectorizer&quot;:&quot;Count_Vectorizer&quot;,&quot;Classification_Algo&quot;:&quot;Decision_Tree&quot;}}]},{&quot;training_id&quot;:&quot;2&quot;,&quot;alg_names&quot;:[{&quot;AlgName&quot;:{&quot;Segmenter&quot;:&quot;None&quot;,&quot;Word_Vectorizer&quot;:&quot;Count_Vectorizer&quot;,&quot;Classification_Algo&quot;:&quot;KNeighbors&quot;}}]}]},{&quot;project_id&quot;:&quot;PID100086&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100087&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[{&quot;AlgName&quot;:{&quot;Segmenter&quot;:&quot;None&quot;,&quot;Word_Vectorizer&quot;:&quot;Count_Vectorizer&quot;,&quot;Classification_Algo&quot;:&quot;Gradient_Boosting&quot;}}]}]},{&quot;project_id&quot;:&quot;PID100088&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;100739&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100089&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;100740&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100091&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;100807&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100092&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;fa320b305def5d8e77237b0b15c786bb&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100107&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]},{&quot;training_id&quot;:&quot;2&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100108&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100109&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100110&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100111&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100112&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100113&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100114&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100115&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100116&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100117&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100132&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100133&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100134&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100135&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100136&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100137&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[{&quot;AlgName&quot;:{&quot;Segmenter&quot;:&quot;None&quot;,&quot;Word_Vectorizer&quot;:&quot;Count_Vectorizer&quot;,&quot;Classification_Algo&quot;:&quot;Decision_Tree&quot;}}]}]},{&quot;project_id&quot;:&quot;PID100138&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;386f52d3d9fecdd99cbbe1eadba307fa&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100140&quot;,&quot;models&quot;:[{&quot;training_id&quot;:&quot;1&quot;,&quot;alg_names&quot;:[]}]},{&quot;project_id&quot;:&quot;PID100141&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100142&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100143&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100144&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100145&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100146&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100147&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100148&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100149&quot;,&quot;models&quot;:[]},{&quot;project_id&quot;:&quot;PID100150&quot;,&quot;models&quot;:[]}]}
+200
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_GenerateAPIKey.py::Test_GenerateAPIKey::test6</td>
+          <td class="col-duration">0.49</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Key&quot;:&quot;d0f4ac5d0ddf6f4a7bcedce7904f054f&quot;}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_GetWipProject.py::Test_GetWipProject::test17</td>
+          <td class="col-duration">0.87</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Data&quot;:[{&quot;RequestID&quot;:100739,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;Save&quot;,&quot;Date&quot;:&quot;2021-04-09 18:57:48&quot;},{&quot;RequestID&quot;:100740,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;Save&quot;,&quot;Date&quot;:&quot;2021-04-09 19:11:41&quot;},{&quot;RequestID&quot;:100807,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;Save&quot;,&quot;Date&quot;:&quot;2021-04-14 12:17:27&quot;},{&quot;RequestID&quot;:&quot;fa320b305def5d8e77237b0b15c786bb&quot;,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;Save&quot;,&quot;Date&quot;:&quot;2021-04-15 17:20:32&quot;},{&quot;RequestID&quot;:&quot;d45056e009cef11e9edcef7f60ee64ad&quot;,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;100%&quot;,&quot;Date&quot;:&quot;2021-04-16 09:22:37&quot;},{&quot;RequestID&quot;:&quot;e5d45cc5cf3ee755f9d628dbbcc91497&quot;,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;15%&quot;,&quot;Date&quot;:&quot;2021-04-16 12:54:52&quot;},{&quot;RequestID&quot;:&quot;ef8f16205f40cc2707d1ea0e6474b5aa&quot;,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;15%&quot;,&quot;Date&quot;:&quot;2021-04-16 12:59:10&quot;},{&quot;RequestID&quot;:&quot;7ba4feb62f862f0a1d580c72a04fcc5e&quot;,&quot;Filename&quot;:&quot;train_data8_reference - Copy.xlsx&quot;,&quot;Status&quot;:&quot;15%&quot;,&quot;Date&quot;:&quot;2021-04-16 12:59:12&quot;}]}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_LoadWipProject.py::Test_LoadWipProject::test16</td>
+          <td class="col-duration">0.50</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Data&quot;:{&quot;RequestID&quot;:&quot;386f52d3d9fecdd99cbbe1eadba307fa&quot;,&quot;Username&quot;:&quot;test@evalueserve.com&quot;,&quot;Status&quot;:&quot;Save&quot;,&quot;Data&quot;:[{&quot;Application Number&quot;:&quot;CN104714006&quot;,&quot;Title&quot;:&quot;一种检测奶制品中β-内酰胺酶的方法&quot;,&quot;Abstract&quot;:&quot;本发明涉及一种检测奶制品中β-内酰胺酶的方法。所述方法设计了一个能被β-内酰胺酶特异性催化的荧光底物探针，该荧光底物探针的主要结构是由荧光素的母环和β-内酰胺类抗生素通过化学合成得到。β-内酰胺酶可以催化荧光底物探针发出强烈的荧光，根据反应得到的荧光强度计算β-内酰胺酶的含量。通过本发明的方法能检测到0.1ng/mL的β-内酰胺酶，比传统的ELISA方法灵敏度提高了两个数量级，检测时间缩短到45min，具有特异性强、灵敏度高、简便、检测快速等优点，而且可以大大降低检测费用。&quot;,&quot;Claims&quot;:&quot;1.一种检测奶制品中β-内酰胺酶的方法，其特征在于，所述方法以荧光素-β-内酰胺类抗生素作为荧光底物探针进行酶促反应，根据反应得到的荧光强度计算β-内酰胺酶的含量。\n2.根据权利要求1所述的方法，其特征在于，所述荧光底物探针的浓度为0.1-1μM，优选为0.4μM；优选地，所述荧光底物探针对β-内酰胺酶具有广谱性。\n3.根据权利要求1或2所述的方法，其特征在于，所述荧光底物探针由荧光素和β-内酰胺类抗生素通过有机合成的方式合成；优选地，所述β-内酰胺类抗生素为青霉素、头孢菌素、头霉素或硫霉素中的任意一种，优选为青霉素或头孢菌素。\n4.根据权利要求1-3任一项所述的方法，其特征在于，所述酶促反应时间为5-60min，优选为10-30min，进一步优选为15min。\n5.根据权利要求1-4任一项所述的方法，其特征在于，所述方法包括在酶促反应前，进行β-内酰胺酶的富集；优选地，所述富集为利用免疫磁珠进行富集。\n6.根据权利要求1-5任一项所述的方法，其特征在于，所述方法包括以下步骤：(1)将免疫磁珠表面偶联上β-内酰胺酶抗体，得到特异性识别β-内酰胺酶的免疫磁珠探针；(2)将步骤(1)得到的免疫磁珠探针置于待测分析液中，形成抗原-抗体免疫磁珠复合物；(3)将步骤(2)得到的复合物进行磁分离，从而实现β-内酰胺酶的富集，得到免疫磁珠-β-内酰胺酶复合物；(4)向步骤(3)得到的免疫磁珠-β-内酰胺酶复合物中加入荧光底物探针进行酶促反应，根据反应得到的荧光强度计算β-内酰胺酶的含量。\n7.根据权利要求6所述的方法，其特征在于，步骤(1)所述免疫磁珠为超顺纳米磁珠；优选为粒径在200-2000nm的超顺纳米磁珠；优选地，所述免疫磁珠为具有60-100emu/g的比饱和磁化强度的免疫磁珠；优选地，所述偶联为共价偶联。\n8.根据权利要求6或7所述的方法，其特征在于，所述方法包括以下步骤：(1)采用比饱和磁化强度为60-100emu/g，粒径在200-2000的超顺纳米磁珠，通过共价偶联的方式将识别β-内酰胺酶的抗体偶联在超顺纳米磁珠的表面，制备成超顺纳米免疫磁珠，得到特异性识别β-内酰胺酶的免疫磁珠探针；(2)将步骤(1)得到的免疫磁珠探针置于待测分析液中，形成抗原-抗体免疫磁珠复合物；(3)将步骤(2)得到的复合物在室温下涡流震荡反应20min，然后进行磁分离，从而实现β-内酰胺酶的富集，得到免疫磁珠-β-内酰胺酶复合物；(4)向步骤(3)得到的免疫磁珠-β-内酰胺酶复合物中加入0.1-1μM的荧光素-β-内酰胺类抗生素作为荧光底物探针进行酶促反应5-60min，根据反应得到的荧光强度计算β-内酰胺酶的含量。&quot;,&quot;Description&quot;:&quot;技术领域\n本发明涉及免疫检测技术领域，具体涉及一种检测奶制品中β-内酰胺酶的方法，尤其涉及一种基于荧光底物探针的荧光值定量检测奶制品中β-内酰胺酶的方法\n背景技术\n目前，青霉素和头孢菌素作为β-内酰胺类药物是治疗牛乳腺炎的首选，是牛奶中最常见的残留抗生素，而乳品中残留的抗生素危害食品安全和人体健康。我国无公害生鲜牛乳的产品标准中明文规定，生鲜牛乳中氨苄青霉素≤10μg/kg，青霉素不得检出。因此，国内多数乳品企业对抗生素残留超标的牛乳采取降价收购原则，出于经济利益的驱动，一些不法奶站为了谋求自己的经济利益，人为地使用一些生物制剂达到降解牛乳中残留的抗生素的目的，生产人造“无抗奶”。有研究表明，牛奶中的抗生素分解剂是革兰氏阳性菌产生的β-内酰胺酶，是人为添加的，而不是内源性β-内酰胺酶。β-内酰胺酶可以分解牛乳中的抗生素残留使其降到允许量。但是目前为止，尚未有关于β-内酰胺酶本身及其分解产物对人体是否健康的安全性评价标准，所以，国际食品法典委员会、欧盟、美国都不允许β-内酰胺酶在食品中使用，我国《食品添加剂使用卫生标准》(GB-2760)的食品用酶制剂名单中也不包括β-内酰胺酶。因此，β-内酰胺酶是非法的食品添加剂，目前国际和国内均不允许该酶在牛奶中作为添加剂使用。\n因此，确立针对这种人造“无抗奶”的违规情况，相应的检测方法具有十分重要的意义。目前比较成熟的检测方法主要包括高效液相色谱法、碘量法、微生物法、头孢菌素显色法、酸量法和免疫学方法。\n(1)微生物法可以定性和定量地检测牛奶中的β-内酰胺酶。该方法可以检测出牛奶中未反应完全(未失活)的β-内酰胺酶，可用于检测未经过任何加工的牛奶，检出限较低。但也存在检测种类有限、实验周期长、只能给出定性结论等局限性。不适用于快速、大规模的样品检测，但是，微生物法仍然是实验室检测牛奶中β-内酰胺酶的主要方法。\n(2)碘量法作为快速筛选方法，该法方便快捷、操作简单、试剂易得，检测革兰阳性细菌胞外酶阳性率高，为实验室所普遍使用。该方法可检出牛奶中已反应及未反应的β-内酰胺酶，可用于检测鲜奶及奶制品中的β-内酰胺酶，检出限较高。但该方法对反应时间等条件要求较严格，有假阳性和假阴性现象，每次试验均需要设置阳性和阴性对照，而且灵敏度较差，重现性差。碘量法虽然经典、快速，但其试剂配制较复杂，淀粉试剂易失效，必须现配现用。\n(3)酸量法简单易行，重复性好，最易获取结果，且较灵敏，结果稳定性好，假阳性和假阴性结果较少，适用于大多数实验室，虽然快速检测，但检测灵敏度偏低，且不能用于酶动力学分析。\n(4)高效液相色谱法具有检测时间短、可以定量分析等优点，但是存在灵敏度低、检测成本高、前处理操作复杂等缺点。\n(5)头孢菌素显色法：该方法比较方便快捷，操作简单，但是所用试剂价格昂贵，定量检测不准确。\n(6)免疫分析法可通过特异性抗体的制备，直接识别目标分子本身，特异性强，灵敏度高，成本低，不需要大型复杂的设备即可进行，但是传统的酶联免疫方法需要多步洗涤，比较耗时耗力，因此其使用也受到一定的限制。\nCN101710122A公开了一种快速免疫检测牛奶中β-内酰胺酶的方法，该方法利用包被与酶标板上的鼠抗β-内酰胺酶单克隆抗体，与兔抗β-内酰胺酶多克隆抗体和辣根过氧化物酶标记羊抗兔抗体组成三抗体夹心法试剂，进行三抗体夹心法免疫学检测。CN103134937A公开了一种检测牛奶中β-内酰胺酶的双抗体夹心法，该方法通过政策的免疫、细胞融合、筛选后得到15株β-内酰胺酶单克隆抗体，并与辣根过氧化物酶进行两两配对，以β-内酰胺酶为标准品建立了β-内酰胺酶的夹心ELISA分析方法。但这些方法都需要制备抗体，多次洗涤，耗时耗力。\n发明内容\n本发明的目的在于提供一种检测奶制品中β-内酰胺酶的方法，特别是一种基于荧光底物探针的荧光值定量检测奶制品中β-内酰胺酶的方法。该检测方法具有灵敏度高、特异性强、快速、简便等优点。\n为达此目的，本发明采用以下技术方案：\n本发明提供了一种检测奶制品中β-内酰胺酶的方法，该方法以荧光素-β-内酰胺类抗生素作为荧光底物探针进行酶促反应，根据反应得到的荧光强度计算β-内酰胺酶的含量。\n本发明中的荧光底物探针可以被β-内酰胺酶特异性地催化，其内酰胺键断裂，然后变成两个分子，其中一个为荧光素的基本结构单元，其荧光得到很大程度地增强，而该荧光强度和样品中的β-内酰胺酶的含量成正比，因此可以快速、特异性地检测β-内酰胺酶的含量。\n本发明中，所述荧光底物探针的浓度为0.1-1μM，例如可以是0.1μM、0.2μM、0.3μM、0.4μM、0.5μM、0.6μM、0.7μM、0.8μM、0.9μM或1μM，优选为0.4μM。\n优选地，所述荧光底物探针对β-内酰胺酶具有广谱性。\n本发明中，所述荧光底物探针由荧光素和β-内酰胺类抗生素通过有机合成的方式合成。本发明的荧光底物探针被β-内酰胺酶特异性催化的反应过程如下：\n本发明中，所述酶促反应时间为5-60min，例如可以是5min、10min、15min、20min、25min、30min、35min、40min、45min、50min、55min或60min，优选为10-30min，进一步优选为15min。\n本发明中，所述方法包括在酶促反应前，进行β-内酰胺酶的富集。\n优选地，所述富集为利用免疫磁珠进行富集。\n本发明通过采用免疫磁珠进行富集，可以从样品中特异性地捕获到β-内酰胺酶，然后洗涤，去掉非特异性吸附的杂质，提高了检测的灵敏度和准确性。\n作为优选技术方案，本发明所述的方法包括以下步骤：\n(1)将免疫磁珠表面偶联上β-内酰胺酶抗体，得到特异性识别β-内酰胺酶的免疫磁珠探针；\n(2)将步骤(1)得到的免疫磁珠探针置于待测分析液中，形成抗原-抗体免疫磁珠复合物；\n(3)将步骤(2)得到的复合物进行磁分离，从而实现β-内酰胺酶的富集，得到免疫磁珠-β-内酰胺酶复合物；\n(4)向步骤(3)得到的免疫磁珠-β-内酰胺酶复合物中加入荧光底物探针进行酶促反应，根据反应得到的荧光强度计算β-内酰胺酶的含量。\n本发明中，步骤(1)所述免疫磁珠为超顺纳米磁珠；优选为粒径在200-2000nm的超顺纳米磁珠，例如粒径可以是200nm、300nm、500nm、600nm、800nm、1000nm、1200nm、1500nm、1600nm、1800nm或2000nm。\n优选地，所述免疫磁珠为具有60-100emu/g的比饱和磁化强度的免疫磁珠，例如比饱和磁化强度可以是60emu/g、65emu/g、70emu/g、75emu/g、80emu/g、85emu/g、90emu/g、95emu/g或100emu/g。\n优选地，所述偶联为共价偶联。\n作为进一步优选的技术方案，本发明所述的方法具体包括以下步骤：\n(1)采用比饱和磁化强度为60-100emu/g，粒径在200-2000的超顺纳米磁珠，通过共价偶联的方式将识别β-内酰胺酶的抗体偶联在超顺纳米磁珠的表面，制备成超顺纳米免疫磁珠，得到特异性识别β-内酰胺酶的免疫磁珠探针；\n(2)将步骤(1)得到的免疫磁珠探针置于待测分析液中，形成抗原-抗体免疫磁珠复合物；\n(3)将步骤(2)得到的复合物在室温下涡流震荡反应20min，然后进行磁分离，从而实现β-内酰胺酶的富集，得到免疫磁珠-β-内酰胺酶复合物；\n(4)向步骤(3)得到的免疫磁珠-β-内酰胺酶复合物中加入0.1-1μM的荧光素-β-内酰胺类抗生素作为荧光底物探针进行酶促反应5-60min，根据反应得到的荧光强度计算β-内酰胺酶的含量。\n本发明中，所述荧光底物探针的激发波长为400-520nm，例如可以是400nm、410nm、420nm、430nm、440nm、450nm、460nm、470nm、480nm、490nm、500nm、510nm或520nm，优选为490nm。\n本发明中，所述荧光底物探针最大发射波长为450-550nm，例如可以是、450nm、460nm、470nm、480nm、490nm、500nm、510nm、515nm、520nm、525nm、530nm、535nm、540nm或550nm，优选为525nm。\n图1示出了本发明检测乳制品中β-内酰胺酶的原理，该检测原理具体如下：\n本发明利用荧光素-β-内酰胺类抗生素作为荧光底物探针进行酶促反应，该荧光探针底物可以被酶特异性地催化，其内酰胺键断裂，然后变成两个分子，其中一个为荧光素的基本结构单元，其荧光得到很大程度地增强，而且该荧光强度和样品中的β-内酰胺酶的含量成正比，从而实现了定量检测；另外，本发明通过酶促反应强的免疫磁珠富集，可以将β-内酰胺酶从复杂的牛奶样品中特异性地捕获并富集，有效去除了非特异性吸附的杂质，提高了检测的灵敏度和准确性。\n与现有技术相比，本发明至少具有如下有益效果：\n(1)本发明的方法能检测到0.1ng/mL的β-内酰胺酶，比传统的ELISA方法灵敏度提高了两个数量级，检测时间缩短到45min以内，具有特异性强、灵敏度高、简便、检测快速等优点；\n(2)本发明的方法可用于环境、临床样品和食品等液体样品中的β-内酰胺酶快速、灵敏地检测，而且可以大大降低检测费用，并且可以避免假阳性的出现，达到适合现场大规模样品筛查的目的，同时可以大大拓宽免疫磁珠的应用范围。\n附图说明\n图1是本发明检测奶制品中β-内酰胺酶的原理图。\n图2是本发明在不同酶促反应时间时的检测结果图。\n图3是本发明在不同荧光底物探针浓度时的检测结果图。\n图4是本发明在不同β-内酰胺酶浓度时的检测结果图。\n具体实施方式\n为更进一步阐述本发明所采取的技术手段及其效果，以下结合附图并通过具体实施方式来进一步说明本发明的技术方案，但本发明并非局限在实施例范围内。\n实施例中所用的试剂仪器设备来源：\n(1)超顺纳米磁珠(200nm-2000nm)由德国默克公司提供；\n(2)识别β-内酰胺酶的抗体购自abcam公司；\n(3)相关的有机试剂由国药化学试剂集团公司提供；\n(4)磁分离架：上海奥润微纳新材料科技有限公司。\n实施例1\n本实施例是利用荧光底物探针检测牛奶中的青霉素酶。\n将100μL 1μM的荧光底物探针加入到用一系列不同浓度的青霉素酶加标的牛奶中(牛奶样品的体积为1000μL，青霉素酶的浓度分别为1000ng/mL、100ng/mL、10ng/mL、1ng/mL、和0ng/mL)，在室温下震荡反应15min，然后测量每个样品的荧光值。通过荧光值和添加的青霉素酶的浓度之间的线性关系，可以得出牛奶中青霉素酶的含量。\n实施例2\n本实施例是利用荧光底物探针检测牛奶中的头孢菌素酶。\n将100μL 1μM荧光底物探针加入到用一系列不同浓度的头孢菌素酶加标的牛奶中(牛奶样品的体积为1000μL，头孢菌素酶的浓度分别为1000ng/mL、100ng/mL、10ng/mL、1ng/mL、和0ng/mL)，在室温下震荡反应15min，然后测量每个样品的荧光值。通过荧光值和添加的头孢菌素酶的浓度之间的线性关系，可以得出牛奶中头孢菌素酶的含量。\n实施例3\n本实施例是利用荧光底物探针检测牛奶中的头霉素酶。\n将100μL 1μM荧光底物探针加入到用一系列不同浓度的头霉素酶加标的牛奶中(牛奶样品的体积为1000μL，头孢菌素酶的浓度分别为1000ng/mL、100ng/mL、10ng/mL、1ng/mL、和0ng/mL)，在室温下震荡反应15min，然后测量每个样品的荧光值。通过荧光值和添加的头霉素酶的浓度之间的线性关系，可以得出牛奶中头霉素酶的含量。\n实施例4\n本实施例是利用免疫磁珠+荧光底物探针共同检测牛奶中的青霉素。\n1、免疫磁珠的制备\n将100μL 10mg/mL的纳米磁珠先悬浮于去离子水中，然后加入50μL浓度为10mg/mL的EDC溶液，在室温下活化反应半小时，然后磁分离，去掉上清液，加入2mL的PBS缓冲溶液(pH＝7.4，0.01M)悬浮。加入0.5mg抗体到上述的悬浮溶液中，在涡流震荡器上反应2h，然后加入500μL 3％的BSA溶液封闭，反应0.5小时，然后磁分离，去掉上清，加入1000μL的PBST溶液，重悬，在涡流震荡器反应3min，再磁分离，去掉上清液。该步骤重复2次，最后用包含有0.01％BSA的PBS溶液重悬，得到免疫磁珠，并在4℃冰箱保存。\n2、荧光底物探针的设计和筛选\n选用青霉素作为内酰胺键的母体结构，采用荧光素母体结构分子为荧光信号报告基团；将内酰胺类的抗生素分子和荧光素母体结构分子通过有机合成的方法合成荧光底物探针。\n3、对牛奶中青霉素酶的检测\n(1)将步骤(1)的免疫磁珠(100μL 0.2mg/mL)和2000μL的PBS混匀，在室温下涡流震荡反应20min，然后磁分离，用1000μL的磷酸吐温缓冲液涤液重悬，再进行磁分离，去掉杂质，最后用100μL的PBS缓冲溶液重悬；\n(2)向步骤(1)的混合溶液里面加入100μL浓度为0.4μM的荧光底物探针，在室温下涡流震荡分别反应5min、10min、15min和20min，最后磁分离，取上清液侧激发波长为490nm下和发射波长为525nm下的荧光强度。\n从图2可以看出，当反应时间为15min时，酶促反应基本达到平衡，因此反应15min可作为最佳的酶促反应时间。\n实施例5\n本实施例中免疫磁珠的制备以及荧光底物探针的设计和筛选如实施例4所示，对牛奶中青霉素酶的检测步骤如下：\n(1)将制得的免疫磁珠(100μL 0.2mg/mL)和5000μL的PBS混匀，在室温下涡流震荡反应20min，然后磁分离，用1000μL的PBST洗涤液重悬，再进行磁分离，去掉杂质，最后用100μL的PBS缓冲溶液重悬；\n(2)向步骤(1)的混合溶液里面分别加入100μL浓度为0.1μM、0.2μM、0.4μM和0.8μM的荧光底物探针，在室温下涡流震荡分别反应15min，最后磁分离，取上清液测激发波长在490nm下和发射波长在525nm下的荧光强度。\n从图3可以看出，荧光底物探针浓度为0.4μM时的效果最佳，因此采用0.4μM的浓度可作为最佳的荧光底物探针底物的浓度。\n实施例6\n本实施例中免疫磁珠的制备以及荧光底物探针的设计和筛选如实施例4所示，对牛奶中青霉素酶的检测步骤如下：\n(1)将制得的免疫磁珠(100μL 0.2mg/mL)和1000μL的PBS混匀，在室温下涡流震荡反应20min，然后磁分离，用1000μL的PBST洗涤液重悬，再进行磁分离，去掉杂质，最后用100μL的PBS缓冲溶液重悬；\n(2)向步骤(1)的混合溶液里面加入100μL浓度为0.2μM的荧光底物探针，在室温下涡流震荡反应15min，最后磁分离，取上清液测激发波长在490nm下和发射波长在525nm下的荧光强度；\n(3)基于荧光强度的变化和β-内酰胺酶浓度之间的关系，建立标准曲线；\n(4)将步骤(1)-(2)中的PBS缓冲液换成待测牛奶样品，再进行检测，根据标准曲线计算待测牛奶样品中的β-内酰胺酶的含量。\n从图4可以看出，该方法的最低检出限为0.1ng/mL，检测时间为45min。\n实施例7\n本实施例中免疫磁珠的制备以及荧光底物探针的设计和筛选如实施例4所示，对牛奶中头孢菌素酶的检测步骤如下：\n(1)将制得的免疫磁珠(100μL 0.1mg/mL)和1000μL的PBS混匀，在室温下涡流震荡反应20min，然后磁分离，用1000μL的PBST洗涤液重悬，再进行磁分离，去掉杂质，最后用100μL的PBS缓冲溶液重悬；\n(2)向步骤(1)的混合溶液里面加入100μL浓度为0.4μM的针对头孢菌素酶的荧光底物探针，在室温下涡流震荡反应15min，最后磁分离，取上清液测激发波长在490nm下和发射波长在525nm下的荧光强度；\n(3)绘制标准曲线：基于荧光强度的变化和β-内酰胺酶浓度之间的关系，绘制标准曲线；\n(4)将步骤(1)-(2)中的PBS缓冲液换成待测牛奶样品，再进行检测，根据标准曲线技术待测牛奶样品中的β-内酰胺酶的含量。\n通过检测，该方法的最低检出限为0.15ng/mL，检测时间为48min。\n综合实施例1-7，本发明方法能检测到最低为0.1ng/mL的β-内酰胺酶，比传统的ELISA方法灵敏度提高了两个数量级，检测时间缩短到45min，具有特异性强、灵敏度高、简便、检测快速等优点；同时本发明的方法为牛奶中β-内酰胺酶的检测提供一种有力的手段，为保证乳制品的安全，保障人民群众的身体健康发挥重要的作用。\n申请人声明，本发明通过上述实施例来说明本发明的详细方法，但本发明并不局限于上述详细方法，即不意味着本发明必须依赖上述详细方法才能实施。所属技术领域的技术人员应该明了，对本发明的任何改进，对本发明产品各原料的等效替换及辅助成分的添加、具体方式的选择等，均落在本发明的保护范围和公开范围之内。&quot;,&quot;Application Date&quot;:1434499200000,&quot;IPC Class&quot;:&quot;G01N33/53; G01N21/64&quot;,&quot;Applicant&quot;:&quot;国家纳米科学中心&quot;,&quot;Relevance&quot;:&quot;0&quot;}]}}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_SaveModel.py::Test_SaveModel::test15</td>
+          <td class="col-duration">0.46</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Error&quot;:&quot;Project Already Saved&quot;}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_SaveTrainedModel.py::Test_SaveTrainedModel::test1</td>
+          <td class="col-duration">0.47</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>&lt;h1&gt;Server Error (500)&lt;/h1&gt;
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_Summary_Originalarticle.py::Test_Summary_Originalarticle::test20</td>
+          <td class="col-duration">0.51</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Summary&quot;:&quot;Robot Framework is a generic open source automation framework.\nBeing open source also means that Robot Framework is free to use without licensing costs.&quot;}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_Summary_linkofarticle.py::Test_Summary_linkofarticle::test19</td>
+          <td class="col-duration">0.75</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Summary&quot;:{&quot;Summary&quot;:&quot;Former President Barack Obama on Sunday compared President Trump to a dictator who suppresses journalists – even though his own administration’s tainted record on press freedom included once secretly monitoring reporters, including Fox News.&quot;},&quot;Article&quot;:&quot;Former President Barack Obama on Sunday compared President Trump to a dictator who suppresses journalists – even though his own administration’s tainted record on press freedom included once secretly monitoring reporters, including Fox News.\n\nObama made the comparison during an appearance on CBS’ “60 Minutes,” with host Scott Pelley. It came in response to Pelley asking the former commander-in-chief to give his thoughts on President Trump’s claims of voter fraud, as well as his supporters perpetuating those allegations.\n\n“It is one more step in delegitimizing not just the incoming Biden administration, but democracy generally. And that’s a dangerous path,” Obama said.\n\nHe added: “There’s been this sense over the last several years that literally anything goes and is justified in order to get power.”\n\nObama said that that feeling is “not unique to the United States,” given that there are “strong men and dictators around the world” who think they can “do anything to stay in power. I can kill people. I can throw them in jail. I can run phony elections. I can suppress journalists.”\n\n“But that’s not who we’re supposed to be. And of the signals I think that Joe Biden needs to send to the world is that, ‘No, those values that we preached, and we believed in, and subscribed in—we still believe.”\n\nYet Obama’s time in office was by no means the paragon of a presidency bound by the rules of a liberal democratic republic. Court documents released in early 2013 showed that the Obama administration secretly monitored Fox News’ James Rosen – whom the FBI dubbed a “criminal co-conspirator,” despite never being charged with a crime.\n\nOBAMA DEFENDS CAMPAIGN TRAIL ATTACKS ON TRUMP: &#x27;I WAS JUST STATING FACTS&#x27;\n\nThe Justice Department also seized Rosen’s emails by evoking the Word War I-era Espionage Act, one of the United States’ most serious wartime laws. The same law was used in 1953 to charge and execute Julius and Ethel Rosenberg – two American communists – for allegedly passing secret information to the Soviet Union.\n\nRosen’s “crime” was that he had published information leaked by a government adviser regarding North Korea’s plans to conduct another nuclear test in response to U.N. sanctions.\n\nThough Trump has been forceful in his denunciation of the press, the Obama administration arguably went further, evoking the Espionage Act to prosecute more people under the law for leaking sensitive information than all previous administrations combined.\n\nAs part of an investigation into the disclosure of information about a botched Al Qaeda terrorist plot, the Obama administration, without notice, obtained the records of 20 Associated Press office phone lines and reports’ home and cell phones.\n\nCLICK HERE TO GET THE FOX NEWS APP\n\nAnd though Obama compared President Trump to a dictator who thinks he can “kill people” without consequences, Obama authorized more than 500 drone strikes across Africa, the Middle East, and South-Centra Asia that resulted in the deaths of more than 300 civilians.\n\nAmong those killed was the U.S.-born terrorist, Senior Al Qaeda leader Anwar al-Awlaki. President Obama signed an order in early 2010 making al-Awlaki the first American to be placed on the “kill or capture list.”&quot;}
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_TranslateText.py::Test_TranslateText::test2</td>
+          <td class="col-duration">0.49</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Translation&quot;:{&quot;Translation&quot;:&quot;मेरा नाम आशुतोष है&quot;}}
+201
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">APITesting/Test_UpdateIndTag.py::Test_UpdateIndTag::test13</td>
+          <td class="col-duration">0.43</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&quot;Success&quot;:&quot;Success&quot;}
+<br/></div></td></tr></tbody></table></body></html>
